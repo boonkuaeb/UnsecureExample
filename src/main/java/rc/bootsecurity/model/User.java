@@ -1,6 +1,8 @@
 package rc.bootsecurity.model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,7 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,6 +28,17 @@ public class User {
     private String roles = "";
 
     private String permissions = "";
+
+
+    public User(String username, String password, String roles, String permissions){
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+        this.permissions = permissions;
+        this.active = 1;
+    }
+
+    protected User(){}
 
 
     public List<String> getRoleList() {
